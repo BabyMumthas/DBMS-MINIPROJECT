@@ -55,6 +55,8 @@ router.get("/search", async (req, res) => {
 
 // ➕ Add Train
 router.post("/add", async (req, res) => {
+  let connection;
+
   try {
     const {
       trainName,
@@ -68,8 +70,10 @@ router.post("/add", async (req, res) => {
       runsOn
     } = req.body;
 
-    // Insert into `trains` table
-    await connection.query(
+    connection = await pool.getConnection();
+
+    // 1. Insert into `Trains` table
+    const [trainResult] = await connection.query(
       "INSERT INTO trains (TrainName, TrainNumber, Departure, Arrival, Date, StartTime, TotalSeats, runs_on) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
       [
         trainName,
@@ -79,22 +83,35 @@ router.post("/add", async (req, res) => {
         date,
         startTime,
         totalSeats,
-        runsOn.join(",") // converting array to string like "Mon,Wed"
+        runsOn.join(",") // e.g., "Mon,Tue,Wed"
       ]
     );
 
-    // Insert into `routes` table for each station
+    const trainID = trainResult.insertId;
+
+    // 2. Insert each route stop into `routes` table
     for (const stop of routeDetails) {
       await connection.query(
-        "INSERT INTO routes (TrainNumber, StationName, TimeFromStart) VALUES (?, ?, ?)",
-        [trainNumber, stop.station, stop.timeFromStart]
+        `INSERT INTO routes 
+          (TrainID, CurrentStation, TimefromStart, RemainingSeats, CurrentDate, NextStation) 
+         VALUES (?, ?, ?, ?, ?, ?)`,
+        [
+          trainID,
+          stop.station,
+          stop.timeFromStart,
+          totalSeats,
+          date,
+          stop.nextStation || null
+        ]
       );
     }
 
-    res.status(200).json({ message: "Train and route added successfully." });
+    res.status(200).json({ message: "✅ Train and route added successfully." });
   } catch (err) {
-    console.error("Error adding train:", err);
+    console.error("❌ Error adding train:", err);
     res.status(500).json({ error: "Internal server error" });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
