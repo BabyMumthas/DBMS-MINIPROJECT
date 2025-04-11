@@ -1,0 +1,204 @@
+:root{
+    --primaryBlue: #1976D2;
+    --secondaryRed: #EF5350;
+    --secondaryBlue: #03A9F4;
+    --secondaryGreen: #4CAF50;
+    --bgWhite: #FDFDFF;
+    --bgBlack: #363636;
+    --bgBlue: #E7F1FF;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400');
+
+html {font-size: 112.5%;} /*18px*/
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+  font-size: 18px;
+  background-color: var(--bgWhite);
+  margin: 0;
+  padding: 0;
+}
+
+p {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 3.052rem;
+  color: var(--primaryBlue);
+}
+
+h2 {
+  font-size: 2.441rem;
+  color: var(--primaryBlue);
+}
+
+h3 {
+  font-size: 1.953rem;
+  color: var(--primaryBlue);
+}
+
+h4 {font-size: 1.563rem;}
+
+h5 {font-size: 1.25rem;}
+
+small, .text_small {font-size: 0.8rem;}
+
+.login_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.header_login {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--bgBlue);
+    padding: 10px 20px;
+}
+
+.header_login button {
+    margin: 5px;
+}
+
+.login_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.train_image {
+    width: 50%;
+    overflow: hidden;
+}
+
+.train_image img{
+    width: 80%;
+    margin: 0px;
+    object-fit: cover;
+}
+
+.login_input {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+   
+}
+
+.homepage_main {
+    display: flex;
+}
+
+.train_query {
+    display: flex;
+    flex: 1;
+    justify-content: center ;
+}
+
+.train_image_homepage {
+    flex: 1;
+}
+
+.admin_login {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.change_password {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    color: var(--primaryBlue);
+}
+
+.all_routes {
+    display: flex;
+    justify-content: center;
+}
+
+.all_routes_table {
+    height: 400;
+    width: "100%"
+}
+
+.datagrid-containter{
+    margin: 60px 100px 80px 100px;
+    color: var(--primaryBlue);
+}
+
+.delete_train {
+    display: flex;
+    justify-content: center;
+}
+
+.delete_train_input {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.bookticket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: var(--bgBlue);
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.bookticket h2 {
+    margin-bottom: 20px;
+}
+
+.ticket-from-flex {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.ticket-from-flex-child {
+    flex: 1;
+}
+
+.ticket-date {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: var(--primaryBlue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--secondaryBlue);
+}
